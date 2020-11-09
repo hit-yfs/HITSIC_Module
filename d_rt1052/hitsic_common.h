@@ -29,18 +29,10 @@
 
 
 
-#ifndef HITSIC_USE_EXTINT
-#define HITSIC_USE_EXTINT       (1U)
-#endif // ! HITSIC_USE_EXTINT
-
-#ifndef HITSIC_USE_PITMGR
-#define HITSIC_USE_PITMGR       (1U)
-#endif // ! HITSIC_USE_PITMGR
-
-#ifndef HITSIC_USE_UARTMGR
-#define HITSIC_USE_UARTMGR      (0U)
-#endif // ! HITSIC_USE_UARTMGR
-
+/**
+ * @brief : 软件版本产生方式定义
+ */
+#define HITSIC_MAKE_VERSION(major, minor, patch) (((major) << 16) | ((minor) << 8) | (patch))
 
 
 
@@ -49,23 +41,56 @@
 #endif // ! HITSIC_USE_FTFX_FLASH
 
 #ifndef HITSIC_USE_DRV_IMU_INV
-#define HITSIC_USE_DRV_IMU_INV (0U)
+#define HITSIC_USE_DRV_IMU_INV (1U)
 #endif // ! HITSIC_USE_DRV_IMU_INV
 
 #ifndef HITSIC_USE_DISP_SSD1306
 #define HITSIC_USE_DISP_SSD1306 (0U)
 #endif // ! HITSIC_USE_DISP_SSD1306
 
+#ifndef HITSIC_USE_DISP_ST7789
+#define HITSIC_USE_DISP_ST7789 (0U)
+#endif // ! HITSIC_USE_DISP_ST7789
+
 #ifndef HITSIC_USE_DRV_BUTTON
 #define HITSIC_USE_DRV_BUTTON (0U)
 #endif // ! HITSIC_USE_DRV_BUTTON
 
+#ifndef HITSIC_USE_DMADVP
+#define HITSIC_USE_DMADVP (0U)
+#endif // ! HITSIC_USE_DMADVP
+
+#ifndef HITSIC_USE_CAM_ZF9V034
+#define HITSIC_USE_CAM_ZF9V034 (0U)
+#endif // ! HITSIC_USE_CAM_ZF9V034
+
+
+
+#ifndef HITSIC_USE_PITMGR
+#define HITSIC_USE_PITMGR       (1U)
+#endif // ! HITSIC_USE_PITMGR
+
+#ifndef HITSIC_USE_EXTINT
+#define HITSIC_USE_EXTINT       (1U)
+#endif // ! HITSIC_USE_EXTINT
+
+#ifndef HITSIC_USE_UARTMGR
+#define HITSIC_USE_UARTMGR      (0U)
+#endif // ! HITSIC_USE_UARTMGR
+
+#ifndef HITSIC_USE_RMCALL
+#define HITSIC_USE_RMCALL       (0U)
+#endif // ! HITSIC_USE_RMCALL
 
 
 
 #ifndef HITSIC_USE_APP_MENU
-#define HITSIC_USE_APP_MENU     (0U)
+#define HITSIC_USE_APP_MENU (0U)
 #endif // ! HITSIC_USE_APP_MENU
+
+#ifndef HITSIC_USE_APP_SVBMP
+#define HITSIC_USE_APP_SVBMP (0U)
+#endif // ! HITSIC_USE_APP_SVBMP
 
 
 

@@ -20,17 +20,30 @@
 
 #include "hitsic_common.h"
 
-//config marco
+#if defined(HITSIC_USE_EXTINT) && (HITSIC_USE_EXTINT > 0)
 
-//HAL marco
-#define INTC_Type 			GPIO_Type
-#define interrupt_mode_t 		gpio_interrupt_mode_t
+typedef GPIO_Type INTC_Type;
+typedef gpio_interrupt_mode_t extInt_interruptMode_t;
 
-#define EXTINT_SetInterruptConfig(_base, _pin, _cfg) 	GPIO_PinSetInterruptConfig(_base, _pin, _cfg)
-#define EXTINT_GetInterruptFlags(_base)  				GPIO_PortGetInterruptFlags(_base)
-#define EXTINT_ClearInterruptFlags(_base, _mask) 				GPIO_PortClearInterruptFlags(_base, _mask)
+#define EXTINT_InterruptOrDMADisabled   kGPIO_InterruptOrDMADisabled
+#define EXTINT_DMARisingEdge            kGPIO_DMARisingEdge
+#define EXTINT_DMAFallingEdge           kGPIO_DMAFallingEdge
+#define EXTINT_DMAEitherEdge            kGPIO_DMAEitherEdge
+#define EXTINT_InterruptLogicZero       kGPIO_InterruptLogicZero
+#define EXTINT_InterruptRisingEdge      kGPIO_InterruptRisingEdge
+#define EXTINT_InterruptFallingEdge     kGPIO_InterruptFallingEdge
+#define EXTINT_InterruptEitherEdge      kGPIO_InterruptEitherEdge
+#define EXTINT_InterruptLogicOne        kGPIO_InterruptLogicOne
 
-#define HITSIC_EXTMGR_INITLIZE 		(1U)
+#define EXTINT_SetInterruptConfig(_intc, _pin, _cfg)    GPIO_SetPinInterruptConfig(_intc, _pin, _cfg)
+#define EXTINT_GetInterruptFlags(_intc)                 GPIO_GetPinsInterruptFlags(_intc)
+#define EXTINT_ClearInterruptFlags(_intc, _mask)                GPIO_ClearPinsInterruptFlags(_intc, _mask)
+
+
+
+#ifndef HITSIC_EXTMGR_INITLIZE
+#define HITSIC_EXTMGR_INITLIZE      (1U)
+#endif // ! HITSIC_EXTMGR_INITLIZE
 
 #if defined(HITSIC_EXTMGR_INITLIZE) && (HITSIC_EXTMGR_INITLIZE > 0)
 inline void EXTINT_PlatformInit(void)
@@ -57,5 +70,7 @@ inline INTC_Type* EXTINT_GetPortInst(GPIO_Type *gpio)
 {
     return gpio;
 }
+
+#endif // ! HITSIC_USE_EXTINT
 
 #endif // ! D_RT1052_SYS_EXTINT_PORT_HPP_
